@@ -23,8 +23,8 @@
 	compatible = "radxa,cm5", "rockchip,rk3588";
 
 	aliases {
-		mmc0 = &sdmmc;
-		mmc1 = &sdhci;
+		mmc0 = &sdhci;
+		mmc1 = &sdmmc;
 		mmc2 = &sdio;
 	};
 };
@@ -66,6 +66,13 @@
 		regulator-state-mem {
 			regulator-off-in-suspend;
 		};
+	};
+
+	eeprom:	at24c16@50 {
+		status = "okay";
+		compatible = "atmel,24c16";
+		reg = <0x50>;
+		pagesize = <16>;
 	};
 };
 
