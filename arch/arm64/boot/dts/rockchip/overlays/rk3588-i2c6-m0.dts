@@ -1,0 +1,31 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/pinctrl/rockchip.h>
+
+/ {
+	metadata {
+		title = "Enable I2C6-M0";
+		compatible = "radxa,rock-5a", "radxa,rock-5c", "radxa,cm5-rpi-cm4-io";
+		category = "misc";
+		exclusive = "GPIO0_C7", "GPIO0_D0";
+		description = "Enable I2C6-M0.
+On Radxa ROCK 5A this is SDA pin 27 and SCL pin 28.
+On Radxa ROCK 5C this is SDA pin 27 and SCL pin 28.
+On Radxa CM5-RPI-CM4-IO this is SDA pin 3 and SCL pin 5.
+";
+	};
+};
+
+&i2c6 {
+	status = "okay";
+	pinctrl-0 = <&i2c6m0_xfer>;
+};
+
+&i2c6m0_xfer {
+	rockchip,pins =
+		/* i2c6_scl_m0 */
+		<0 RK_PD0 9 &pcfg_pull_up_drv_level_3>,
+		/* i2c6_sda_m0 */
+		<0 RK_PC7 9 &pcfg_pull_up_drv_level_3>;
+};

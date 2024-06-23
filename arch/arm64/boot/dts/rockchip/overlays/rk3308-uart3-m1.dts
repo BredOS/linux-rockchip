@@ -1,0 +1,27 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Enable UART3-M1";
+		compatible = "radxa,rock-s0";
+		category = "misc";
+		exclusive = "GPOI0_C2", "GPOI0_C1", "pwm5", "pwm6";
+		description = "Enable UART3-M1.
+On Radxa ROCK S0 this RX pin 15 & TX pin 33.";
+	};
+};
+
+&uart3 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&uart3m1_xfer>;
+};
+
+&pwm5 {
+	status = "disabled";
+};
+
+&pwm6 {
+	status = "disabled";
+};

@@ -1,0 +1,20 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Enable PWM-C on GPIOX_8";
+		compatible = "radxa,zero";
+		category = "misc";
+		exclusive = "pwm_cd", "GPIOX_8";
+		description = "Enable PWM-C on GPIOX_8.";
+	};
+};
+
+&pwm_cd {
+	status = "okay";
+	pinctrl-0 = <&pwm_c_x8_pins>;
+	pinctrl-names = "default";
+	clocks = <&xtal>;
+	clock-names = "clkin2";
+};

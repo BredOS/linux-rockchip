@@ -1,0 +1,3 @@
+&led_power_151 {
+	status = "disabled";
+};

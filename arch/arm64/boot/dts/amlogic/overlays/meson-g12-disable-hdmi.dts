@@ -1,0 +1,24 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Disable HDMI";
+		compatible = "radxa,zero", "radxa,zero2";
+		category = "misc";
+		exclusive = "hdmi";
+		description = "Disable HDMI.";
+	};
+};
+
+&hdmi_tx {
+	status = "disabled";
+};
+
+&cecb_AO {
+	status = "disabled";
+};
+
+&cec_AO {
+	status = "disabled";
+};

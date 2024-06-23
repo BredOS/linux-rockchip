@@ -1,0 +1,29 @@
+// ROCK 5B Pcie M.2 to sata
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Enable SATA1";
+		compatible = "radxa,rock-5b";
+		category = "misc";
+		description = "Enable SATA1.
+When SATA1 is enabled, PCIe cannot be enabled on the same port.";
+	};
+};
+
+&wifi_disable {
+	status = "disabled";
+};
+
+&bt_wake {
+	status = "disabled";
+};
+
+&pcie2x1l0 {
+	status = "disabled";
+};
+
+&sata1 {
+	status = "okay";
+};

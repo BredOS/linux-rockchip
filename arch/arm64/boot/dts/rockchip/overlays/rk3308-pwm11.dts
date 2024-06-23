@@ -1,0 +1,19 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Enable PWM11";
+		compatible = "unknown";
+		category = "misc";
+		exclusive = "GPIO2_C0";
+		description = "Enable PWM11.
+On ROCK S0 this is pin 29.";
+	};
+};
+
+&pwm11 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&pwm11_pin>;
+};

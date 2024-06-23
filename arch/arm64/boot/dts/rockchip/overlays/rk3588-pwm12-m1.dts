@@ -1,0 +1,18 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Enable PWM12-M1";
+		compatible = "unknown";
+		category = "misc";
+		exclusive = "GPIO4_B5";
+		description = "Enable PWM12-M1.
+On Radxa ROCK 5B this is pin 7.";
+	};
+};
+
+&pwm12 {
+	status = "okay";
+	pinctrl-0 = <&pwm12m1_pins>;
+};

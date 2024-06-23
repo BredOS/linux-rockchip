@@ -1,0 +1,23 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/rockchip.h>
+
+
+/ {
+	metadata {
+		title = "Disabled Zero 3W Ethernet";
+		compatible = "radxa,zero3";
+		category = "misc";
+		description = "Disabled Zero 3W Ethernet.";
+	};
+};
+
+&mdio1 {
+	status = "disabled";
+};
+
+&gmac1 {
+	status = "disabled";
+};

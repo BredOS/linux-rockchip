@@ -1,0 +1,18 @@
+/dts-v1/;
+/plugin/;
+
+#include "rock-4-ov5647.dtsi"
+
+/ {
+	metadata {
+		title = "Enable Raspberry Pi Camera v1.3";
+		compatible = "rockchip,rk3399";
+		category = "camera";
+		exclusive = "mipi_dphy_rx0";
+		description = "Enable Raspberry Pi Camera v1.3.";
+	};
+};
+
+&camera_ov5647 {
+	rockchip,camera-module-name = "rpi-camera-v1p3";
+};

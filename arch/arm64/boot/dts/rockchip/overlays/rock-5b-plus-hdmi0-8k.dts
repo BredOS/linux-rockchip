@@ -1,0 +1,41 @@
+/dts-v1/;
+/plugin/;
+#include <dt-bindings/clock/rk3588-cru.h>
+
+/ {
+	metadata {
+		title = "Enable 8K output on HDMI0";
+		compatible = "radxa,rock-5b-plus";
+		category = "display";
+		exclusive = "vp0", "hdmi0";
+		description = "Enable 8K output on HDMI0.
+8K cannot be enabled on HDMI0 and HDMI1 at the same time.";
+	};
+};
+
+&route_hdmi1 {
+	connect = <&vp2_out_hdmi1>;
+	status = "okay";
+};
+
+&hdmi1_in_vp1 {
+	status = "disabled";
+};
+
+&hdmi1_in_vp2 {
+	status = "okay";
+};
+
+&route_hdmi0 {
+	connect = <&vp0_out_hdmi0>;
+	status = "okay";
+};
+
+&hdmi0_in_vp0 {
+	status = "okay";
+};
+
+&vop {
+	assigned-clocks = <&cru ACLK_VOP>;
+	assigned-clock-rates = <800000000>;
+};

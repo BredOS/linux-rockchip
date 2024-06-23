@@ -1,0 +1,26 @@
+/dts-v1/;
+/plugin/;
+
+/{
+	metadata {
+		title = "Enable spidev on SPI1";
+		compatible = "radxa,rock-s0";
+		category = "misc";
+		exclusive = "GPOI2_B1", "GPOI2_A4", "GPOI2_A5", "GPOI2_A7";
+		description = "Enable spidev on SPI1 on pin 12, 35, 38 & 40.";
+	};
+};
+
+&spi1 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&spi1m1_clk &spi1m1_csn0 &spi1m1_miso &spi1m1_mosi>;
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	spidev@0 {
+		compatible = "rockchip,spidev", "armbian,spi-dev";
+		reg = <0>;
+		spi-max-frequency = <50000000>;
+	};
+};

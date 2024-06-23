@@ -1,0 +1,29 @@
+#define DISPLAY_SPI spi3
+#include "waveshare35-lcd.dtsi"
+
+/ {
+	metadata {
+		title = "Enable Waveshare 3.5inch RPi LCD (C) on SPI3";
+		compatible = "radxa,cm3-io", "radxa,cm3-rpi-cm4-io";
+		category = "misc";
+		exclusive = "GPIO4_A6", "GPIO3_C6", "GPIO3_D3", "GPIO0_C7", "GPIO4_B0", "GPIO4_B2", "GPIO4_B3";
+		description = "Enable Waveshare 3.5inch RPi LCD (C) on SPI3.";
+	};
+};
+
+&DISPLAY_SPI {
+	pinctrl-names = "default", "high_speed";
+	pinctrl-0 = <&spi3m0_cs0 &spi3m0_pins>;
+	pinctrl-1 = <&spi3m0_cs0 &spi3m0_pins_hs>;
+};
+
+&ili9486 {
+	reset-gpios = <&gpio3 RK_PC6 GPIO_ACTIVE_LOW>;
+	dc-gpios = <&gpio3 RK_PD3 GPIO_ACTIVE_HIGH>;
+};
+
+&ads7846 {
+	interrupts = <RK_PC7 IRQ_TYPE_EDGE_FALLING>;
+	interrupt-parent = <&gpio0>;
+	pendown-gpio = <&gpio0 RK_PC7 GPIO_ACTIVE_HIGH>;
+};

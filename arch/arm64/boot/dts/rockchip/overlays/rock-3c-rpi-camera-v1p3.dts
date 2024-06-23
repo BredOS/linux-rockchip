@@ -1,0 +1,18 @@
+/dts-v1/;
+/plugin/;
+
+#include "rock-3c-ov5647.dtsi"
+
+/ {
+	metadata {
+		title = "Enable Raspberry Pi Camera v1.3";
+		compatible = "radxa,rock-3c";
+		category = "camera";
+		exclusive = "csi2_dphy0";
+		description = "Enable Raspberry Pi Camera v1.3.";
+	};
+};
+
+&ov5647 {
+	rockchip,camera-module-name = "rpi-camera-v1p3";
+};

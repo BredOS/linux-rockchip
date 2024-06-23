@@ -1,0 +1,67 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Enable Dual Camera GC2053";
+		compatible = "unknown";
+		category = "camera";
+		description = "Enable Dual Camera GC2053.";
+	};
+};
+
+&i2c0 {
+	status = "okay";
+};
+
+&gc2053_1 {
+	status = "okay";
+};
+
+&i2c2 {
+	status = "okay";
+};
+
+&gc2053_2 {
+	status = "okay";
+};
+
+&csi2_dphy_hw {
+	status = "okay";
+};
+
+&csi2_dphy0 {
+	status = "disabled";
+};
+
+&csi2_dphy1 {
+	status = "okay";
+};
+
+&csi2_dphy2 {
+	status = "okay";
+};
+
+&rkisp {
+	status = "okay";
+};
+
+&rkisp_mmu {
+	status = "okay";
+};
+
+&rkisp_vir0 {
+	status = "okay";
+};
+
+&rkisp_vir1 {
+	status = "okay";
+};
+
+&rkcif_mmu {
+	status = "okay";
+};
+
+&rkcif {
+	status = "okay";
+};

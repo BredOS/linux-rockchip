@@ -1,0 +1,21 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/clock/rk3399-cru.h>
+
+/ {
+	metadata {
+		title = "Set RGA frequency to 400 MHz";
+		compatible = "unknown";
+		category = "misc";
+		description = "Set RGA frequency to 400 MHz.
+This is usually not needed.
+You can check current clock speed with:
+sudo grep rga /sys/kernel/debug/clk/clk_summary";
+	};
+};
+
+&rga {
+	assigned-clocks = <&cru ACLK_RGA>, <&cru SCLK_RGA_CORE>;
+	assigned-clock-rates = <400000000>, <400000000>;
+};

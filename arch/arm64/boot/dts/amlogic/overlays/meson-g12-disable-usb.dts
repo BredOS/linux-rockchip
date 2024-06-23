@@ -1,0 +1,24 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Disable USB";
+		compatible = "radxa,zero", "radxa,zero2";
+		category = "misc";
+		exclusive = "usb";
+		description = "Disable USB.";
+	};
+};
+
+&usb {
+	status = "disabled";
+};
+
+&usb2_phy0 {
+	status = "disabled";
+};
+
+&usb2_phy0 {
+	status = "disabled";
+};

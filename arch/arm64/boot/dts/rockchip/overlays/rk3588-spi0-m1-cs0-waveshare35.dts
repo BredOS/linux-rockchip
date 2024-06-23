@@ -1,0 +1,30 @@
+#define DISPLAY_SPI spi0
+#include "waveshare35-lcd.dtsi"
+
+/ {
+	metadata {
+		title = "Enable Waveshare 3.5inch RPi LCD (C) on SPI0-M0";
+		compatible = "radxa,cm5-io";
+		category = "misc";
+		exclusive = "GPIO1_B1", "GPIO1_D5", "GPIO4_A0", "GPIO4_A1", "GPIO4_A2", "GPIO4_A6", "GPIO4_B2" ;
+		description = "Enable Waveshare 3.5inch RPi LCD (C) on SPI0-M0.
+Touch is temporarily unavailable.";
+	};
+};
+
+&DISPLAY_SPI {
+	pinctrl-names = "default";
+	pinctrl-0 = <&spi0m1_cs0 &spi0m1_pins>;
+};
+
+&ili9486 {
+	reset-gpios = <&gpio1 RK_PB1 GPIO_ACTIVE_LOW>; // GPIO1_B1
+	dc-gpios = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>; // GPIO1_D5
+};
+
+&ads7846 {
+	status = "disabled";
+	interrupt-parent = <&gpio4>;
+	interrupts = <RK_PA6 IRQ_TYPE_EDGE_FALLING>;
+	pendown-gpio = <&gpio4 RK_PA6 GPIO_ACTIVE_HIGH>;
+};

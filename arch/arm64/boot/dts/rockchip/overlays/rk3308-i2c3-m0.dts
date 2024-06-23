@@ -1,0 +1,36 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/pinctrl/rockchip.h>
+
+/ {
+	metadata {
+		title = "Enable I2C3-M0";
+		compatible = "radxa,rockpis", "radxa,rock-s0";
+		category = "misc";
+		exclusive = "GPIO0_B7", "GPIO0_C0", "pwm2", "pwm3";
+		description = "Enable I2C3-M0.
+On Radxa ROCK PI S this is SDA pin 11 & SCL pin 13.
+On Radxa ROCK S0 this is SDA pin 27 & SCL pin 28.";
+    };
+};
+
+&i2c3 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&i2c3m0_xfer>;
+};
+
+&pwm2 {
+	status = "disabled";
+};
+
+&pwm3 {
+	status = "disabled";
+};
+
+&i2c3m0_xfer {
+	rockchip,pins =
+		<0 RK_PB7 2 &pcfg_pull_up_12ma>,
+		<0 RK_PC0 2 &pcfg_pull_up_12ma>;
+};

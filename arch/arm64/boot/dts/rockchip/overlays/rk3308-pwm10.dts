@@ -1,0 +1,19 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Enable PWM10";
+		compatible = "radxa,rock-s0";
+		category = "misc";
+		exclusive = "GPIO2_B4";
+		description = "Enable PWM10.
+On ROCK S0 this is pin 32.";
+	};
+};
+
+&pwm10 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&pwm10_pin>;
+};

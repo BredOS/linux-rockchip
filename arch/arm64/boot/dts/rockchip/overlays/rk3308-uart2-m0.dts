@@ -1,0 +1,32 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Enable UART2-M0";
+		compatible = "radxa,rockpis", "radxa,rock-s0";
+		category = "misc";
+		exclusive = "GPIO1_C6", "GPIO1_C7", "spi2", "uart1_cts", "uart1_rts";
+		description = "Enable UART2-M0.
+On ROCK PI S this is TX pin 19 & RX pin 21.
+On ROCK S0 this is TX pin 19 & RX pin 21.";
+	};
+};
+
+&uart2 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&uart2m0_xfer>;
+};
+
+&spi2 {
+	status = "disabled";
+};
+
+&uart1_cts {
+	status = "disabled";
+};
+
+&uart1_rts {
+	status = "disabled";
+};

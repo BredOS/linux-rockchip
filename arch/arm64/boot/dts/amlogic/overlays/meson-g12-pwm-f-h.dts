@@ -1,0 +1,22 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Enable PWM-F on GPIOH_5";
+		compatible = "radxa,zero", "radxa,zero2";
+		category = "misc";
+		exclusive = "pwm_ef", "GPIOH_5";
+		description = "Enable PWM-F on GPIOH_5.
+On Radxa ZERO this is pin 21.
+On Radxa ZERO 2 PRO this is pin 21.";
+	};
+};
+
+&pwm_ef {
+	pinctrl-0 = <&pwm_e_pins &pwm_f_h_pins>;
+	pinctrl-names = "default";
+	clocks = <&xtal>;
+	clock-names = "clkin2";
+	status = "okay";
+};

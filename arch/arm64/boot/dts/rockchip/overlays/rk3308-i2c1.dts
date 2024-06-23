@@ -1,0 +1,20 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Enable I2C1";
+		compatible = "radxa,rockpis", "radxa,rock-s0";
+		category = "misc";
+		exclusive = "GPIO0_B3", "GPIO0_B4";
+		description = "Enable I2C1.
+On Radxa ROCK PI S this is SDA pin 3 & SCL pin 5.
+On ROCK S0 this is SDA pin 3 & SCL pin 5.";
+    };
+};
+
+&i2c1 {
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&i2c1_xfer>;
+};

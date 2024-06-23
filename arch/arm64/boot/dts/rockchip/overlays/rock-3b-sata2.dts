@@ -1,0 +1,24 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Enable SATA2";
+		compatible = "radxa,rock-3b";
+		category = "misc";
+		exclusive = "pcie2x1", "sata2";
+		description = "Enable SATA2.
+For HW < 1.5, the signal is routed to M.2 B key.
+For HW >= V1.5, the signal is routed to M.2 E key.
+When SATA2 is enabled, PCIe cannot be enabled on the same port.";
+	};
+};
+
+&pcie2x1 {
+	status = "disabled";
+};
+
+&sata2 {
+	status = "okay";
+	phy-supply = <&vcc3v3_sys>;
+};

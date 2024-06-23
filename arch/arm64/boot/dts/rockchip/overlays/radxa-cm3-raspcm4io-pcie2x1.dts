@@ -1,0 +1,18 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Enable PCIe";
+		compatible = "radxa,cm3-rpi-cm4-io";
+		category = "misc";
+		description = "Enable PCIe.";
+	};
+};
+
+&pcie2x1 {
+	status = "okay";
+	reset-gpios = <&gpio0 0x0a 0x00>;
+	vpcie3v3-supply = <&vcc3v3_sys>;
+	pinctrl-0 = <&pcie20m2_pins>;
+};

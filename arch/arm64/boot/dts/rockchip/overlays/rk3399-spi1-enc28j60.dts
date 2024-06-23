@@ -1,0 +1,42 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/rockchip.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+
+/ {
+	metadata {
+		title = "Enable ENC28J60 on SPI1";
+		compatible = "radxa,rock-4c-plus";
+		category = "misc";
+		exclusive = "GPIO1_A7", "GPIO1_B0", "GPIO1_B1", "GPIO1_B2", "GPIO4_D5";
+		description = "Provide support for Microchip ENC28J60 SPI Ethernet controller on GPIO pins.
+Pin definition:
+MOSI=19 MISO=21 SCK=23 CS=24 INT=22";
+	};
+};
+
+&spi1 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+	status = "okay";
+
+	ethernet: enc28j60@0 {
+		compatible = "microchip,enc28j60";
+		reg = <0>;
+		spi-max-frequency = <20000000>;
+		interrupt-parent = <&gpio4>;
+		interrupts = <RK_PD5 IRQ_TYPE_EDGE_FALLING>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&enc28j60_int_pins>;
+	};
+};
+
+&pinctrl {
+	enc28j60 {
+		enc28j60_int_pins: enc28j60-int-pins {
+			rockchip,pins = <4 RK_PD5 RK_FUNC_GPIO &pcfg_pull_up>;
+		};
+	};
+};

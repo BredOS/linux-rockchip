@@ -1,0 +1,20 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Enable I2C8-M2";
+		compatible = "radxa,rock-5a", "radxa,rock-5c";
+		category = "misc";
+		exclusive = "GPIO1_D6", "GPIO1_D7";
+		description = "Enable I2C8-M2.
+On Radxa ROCK 5A this is SDA pin 3 and SCL pin 5.
+On Radxa ROCK 5C this is SDA pin 3 and SCL pin 5.
+";
+	};
+};
+
+&i2c8 {
+	status = "okay";
+	pinctrl-0 = <&i2c8m2_xfer>;
+};

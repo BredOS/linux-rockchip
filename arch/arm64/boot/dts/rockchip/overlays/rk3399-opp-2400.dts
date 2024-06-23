@@ -1,0 +1,21 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Increase max CPU frequency to 2.4 GHz";
+		compatible = "radxa,rock-pi-4a-plus", "radxa,rock-pi-4b-plus";
+		category = "misc";
+		exclusive = "cluster1_opp-opp09";
+		description = "Allow Cortex-A72 cluster to run at 2.4 GHz.
+Warning: Overclocking may cause hardware damage and system instability.
+You warrenty will be voided.";
+	};
+};
+
+&cluster1_opp {
+	opp09 {
+		opp-hz = /bits/ 64 <2400000000>;
+		opp-microvolt = <1250000>;
+	};
+};

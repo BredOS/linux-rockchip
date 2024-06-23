@@ -1,0 +1,35 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/rockchip.h>
+
+/ {
+	metadata {
+		title = "Enable SATA1 (SATA2 for Radxa CM3 IO <= v1.3) and disable USB 3.0";
+		compatible = "radxa,cm3-io";
+		category = "misc";
+		exclusive = "sata1";
+		description = "Enable SATA1.
+When SATA1 is enabled, USB3.0 cannot be enabled on the same pin mux.
+Radxa CM3 IO  <= v1.3 contains incorrect label of this port.";
+	};
+};
+
+&vcc_ch482d1 {
+	enable-active-high;
+	gpio = <&gpio3 RK_PC7 GPIO_ACTIVE_HIGH>;
+	status = "okay";
+};
+
+&sata1 {
+	status = "okay";
+};
+
+&usbhost_dwc3 {
+	status = "disabled";
+};
+
+&usbhost30 {
+	status = "disabled";
+};

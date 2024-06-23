@@ -1,0 +1,18 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Set OTG port to be controlled by hardware switch";
+		compatible = "unknown";
+		category = "misc";
+		exclusive = "usb";
+		description = "Set OTG port to be controlled by hardware switch.
+This is the default mode.";
+	};
+};
+
+&usb {
+	status = "okay";
+	dr_mode = "otg";
+};

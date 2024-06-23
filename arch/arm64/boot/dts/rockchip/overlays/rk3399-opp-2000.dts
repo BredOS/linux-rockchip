@@ -1,0 +1,27 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Increase max CPU frequency to 2.0 GHz";
+		compatible = "radxa,rock-pi-4a", "radxa,rock-pi-4b", "radxa,rock-pi-4c";
+		category = "misc";
+		exclusive = "cluster1_opp-opp-2016000000";
+		description = "Allow Cortex-A72 cluster to run at 2.0 GHz.
+Warning: Overclocking may cause hardware damage and system instability.
+You warrenty will be voided.";
+	};
+};
+
+&cluster1_opp {
+	opp-2016000000 {
+		opp-hz = /bits/ 64 <2016000000>;
+		opp-microvolt = <1250000 1250000 1250000>;
+		opp-microvolt-L0 = <1250000 1250000 1250000>;
+		opp-microvolt-L1 = <1250000 1250000 1250000>;
+		opp-microvolt-L2 = <1250000 1250000 1250000>;
+		opp-microvolt-L3 = <1250000 1250000 1250000>;
+		opp-microvolt-L4 = <1250000 1250000 1250000>;
+		clock-latency-ns = <40000>;
+	};
+};

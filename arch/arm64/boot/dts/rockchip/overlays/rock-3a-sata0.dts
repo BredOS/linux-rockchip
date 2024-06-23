@@ -1,0 +1,25 @@
+// ROCK 3A usb3.0 otg port to sata
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Enable SATA0";
+		compatible = "unknown";
+		category = "misc";
+		description = "Enable SATA0.
+When SATA0 is enabled, USB3.0 cannot be enabled on the same port.";
+	};
+};
+
+&usbdrd_dwc3 {
+	status = "disabled";
+};
+
+&usbdrd30 {
+	status = "disabled";
+};
+
+&sata0 {
+	status = "okay";
+};

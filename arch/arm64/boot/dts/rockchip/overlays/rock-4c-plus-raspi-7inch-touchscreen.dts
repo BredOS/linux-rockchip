@@ -1,0 +1,95 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Enable Raspberry Pi 7-inch Touchscreen";
+		compatible = "radxa,rock-4c-plus";
+		category = "display";
+		exclusive = "dsi";
+		description = "Enable Raspberry Pi 7-inch Touchscreen";
+	};
+};
+
+&dsi {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+	rockchip,lane-rate = <696>;
+
+	ports {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		port@1 {
+			reg = <1>;
+			dsi_out_panel: endpoint {
+				remote-endpoint = <&panel_in_dsi>;
+			};
+		};
+	};
+};
+
+&i2c1 {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	raspits_panel: raspits-panel@45 {
+		compatible = "raspberrypi,7inch-touchscreen-panel";
+		reg = <0x45>;
+
+		port {
+			panel_in_dsi: endpoint {
+				remote-endpoint = <&dsi_out_panel>;
+			};
+		};
+	};
+
+	raspits_touch_ft5426: raspits-touch-ft5426@38 {
+		compatible = "raspits_ft5426";
+		reg = <0x38>;
+	};
+};
+
+&vopl_out_dsi {
+	status = "okay";
+};
+
+&dsi_in_vopl {
+	status = "okay";
+};
+
+&route_dsi {
+	status = "okay";
+	connect = <&vopl_out_dsi>;
+};
+
+&vcc3v3_dp {
+	status = "disabled";
+};
+
+&virtual_pd {
+	status = "disabled";
+};
+
+&tcphy0 {
+	extcon = <0>;
+	status = "okay";
+};
+
+&cdn_dp {
+	status = "disabled";
+};
+
+&tcphy0_dp {
+	status = "disabled";
+};
+
+&dp_in_vopl {
+	status = "disabled";
+};
+
+&dp_in_vopb {
+	status = "disabled";
+};

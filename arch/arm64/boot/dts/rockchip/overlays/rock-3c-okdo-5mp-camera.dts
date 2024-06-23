@@ -1,0 +1,17 @@
+/dts-v1/;
+/plugin/;
+
+#include "rock-3c-ov5647.dtsi"
+
+/ {
+	metadata {
+		title = "Enable OKdo 5MP Camera";
+		compatible = "radxa,rock-3c";
+		category = "camera";
+		description = "Enable OKdo 5MP Camera.";
+	};
+};
+
+&ov5647 {
+	rockchip,camera-module-name = "OKDO-5MP";
+};

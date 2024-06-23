@@ -1,0 +1,22 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+
+	metadata {
+		title = "Enable SATA0";
+		compatible = "radxa,rock-5a";
+		category = "misc";
+		exclusive = "combphy0_ps";
+		description = "Enable SATA0.
+When SATA0 is enabled, PCIe cannot be enabled on the same port.";
+	};
+};
+
+&pcie2x1l2 {
+	status = "disabled";
+};
+
+&sata0 {
+	status = "okay";
+};

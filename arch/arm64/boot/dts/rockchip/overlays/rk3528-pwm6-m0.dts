@@ -1,0 +1,19 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Enable PWM6-M0";
+		compatible = "radxa,rock-2a";
+		category = "misc";
+		exclusive = "GPIO4_C3";
+		description = "Enable PWM0-M0.
+On Radxa ROCK 2A this is pin 26.";
+	};
+};
+
+&pwm6 {
+	status = "okay";
+	pinctrl-names = "active";
+	pinctrl-0 = <&pwm6m0_pins>;
+};

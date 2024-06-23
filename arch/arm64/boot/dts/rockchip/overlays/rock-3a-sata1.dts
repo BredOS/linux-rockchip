@@ -1,0 +1,25 @@
+// ROCK 3A usb3.0 host port to sata
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Enable SATA1";
+		compatible = "unknown";
+		category = "misc";
+		description = "Enable SATA1.
+When SATA1 is enabled, USB3.0 cannot be enabled on the same port.";
+	};
+};
+
+&usbhost_dwc3 {
+	status = "disabled";
+};
+
+&usbhost30 {
+	status = "disabled";
+};
+
+&sata1 {
+	status = "okay";
+};

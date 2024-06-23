@@ -1,0 +1,23 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Enable PWM15-M1";
+		compatible = "radxa,rock-5a", "radxa,rock-5b", "radxa,rock-5b-plus", "radxa,rock-5c", "radxa,nx5-io";
+		category = "misc";
+		exclusive = "GPIO4_B3";
+		description = "Enable PWM15-M1.
+On Radxa ROCK 5A this is pin 11.
+On Radxa ROCK 5B this is pin 3.
+On Radxa ROCK 5B+ this is pin 3.
+On Radxa ROCK 5C this is pin 11.
+On Radxa NX5 IO this is pin 32.
+";
+	};
+};
+
+&pwm15 {
+	status = "okay";
+	pinctrl-0 = <&pwm15m1_pins>;
+};

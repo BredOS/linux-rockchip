@@ -1,0 +1,43 @@
+&ext_cam_clk {
+	status = "okay";
+};
+
+&i2c5 {
+	status = "okay";
+};
+
+&ov5647 {
+	status = "okay";
+};
+
+&csi2_dphy_hw {
+	status = "okay";
+};
+
+&csi2_dphy0 {
+	status = "okay";
+};
+
+&rkisp_vir0 {
+	status = "okay";
+};
+
+&rkisp{
+	status = "okay";
+};
+
+&rkisp_mmu {
+	status = "okay";
+};
+
+&rkcif_mmu {
+	status = "okay";
+};
+
+&rkcif {
+	status = "okay";
+};
+
+&vcc_camera {
+	status = "okay";
+};

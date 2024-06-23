@@ -1,0 +1,31 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/rockchip.h>
+
+/ {
+	metadata {
+		title = "Enable SATA2 (SATA1 for Radxa CM3 IO <= v1.3) and disable PCIe";
+		compatible = "radxa,cm3-io";
+		category = "misc";
+		exclusive = "sata2";
+		description = "Enable SATA2.
+When SATA2 is enabled, PCIe cannot be enabled on the same pin mux.
+Radxa CM3 IO  <= v1.3 contains incorrect label of this port.";
+	};
+};
+
+&vcc_ch482d2 {
+	enable-active-high;
+	gpio = <&gpio3 RK_PC6 GPIO_ACTIVE_HIGH>;
+	status = "okay";
+};
+
+&pcie2x1 {
+	status = "disabled";
+};
+
+&sata2 {
+	status = "okay";
+};

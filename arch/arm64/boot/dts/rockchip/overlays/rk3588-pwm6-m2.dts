@@ -1,0 +1,19 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	metadata {
+		title = "Enable PWM6-M2";
+		compatible = "radxa,rock-5b", "radxa,rock-5b-plus";
+		category = "misc";
+		exclusive = "GPIO4_C5";
+		description = "Enable PWM6-M2.
+On Radxa ROCK 5B this is pin 28.
+On Radxa ROCK 5B+ this is pin 28.";
+	};
+};
+
+&pwm6 {
+	status = "okay";
+	pinctrl-0 = <&pwm6m2_pins>;
+};
