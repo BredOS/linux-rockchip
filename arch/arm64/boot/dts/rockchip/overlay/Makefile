@@ -13,6 +13,11 @@ dtbo-$(CONFIG_ARCH_ROCKCHIP) += \
 	orangepi-5-plus-ov13850.dtbo \
 	orangepi-5-plus-ov13855.dtbo \
 	orangepi-5-plus-sata2.dtbo \
+	orangepi-5-pro-lcd.dtbo \
+	orangepi-5-pro-sfc.dtbo \
+	orangepi-5-pro-cam1.dtbo \
+	orangepi-5-pro-cam2.dtbo \
+	orangepi-5-pro-disable-leds.dtbo \
 	rock-5a-hdmi-8k.dtbo \
 	rock-5a-i2c5-rtc-hym8563.dtbo \
 	rock-5a-radxa-camera-4k.dtbo \
@@ -57,6 +62,11 @@ dtbo-$(CONFIG_ARCH_ROCKCHIP) += \
 	yy3568-display-dsi1.dtbo \
 	yy3568-display-edp.dtbo \
 	yy3568-sata2.dtbo \
+	khadas-edge2-display-dsi0.dtbo \
+	khadas-edge2-display-dsi1.dtbo \
+	khadas-edge2-cam1.dtbo \
+	khadas-edge2-cam2.dtbo \
+	khadas-edge2-cam3.dtbo \
 	rockchip-rk3588-opp-oc-24ghz.dtbo \
 	rk3588-can0-m0.dtbo \
 	rk3588-can1-m0.dtbo \
@@ -146,7 +156,8 @@ dtbo-$(CONFIG_ARCH_ROCKCHIP) += \
 	rk3588-uart8-m0-full.dtbo \
 	rk3588-uart8-m1.dtbo \
 	rk3588-w1-gpio3-b3.dtbo \
-	rk3588-w1-gpio4-b1.dtbo
+	rk3588-w1-gpio4-b1.dtbo \
+	rk3588-hdmirx.dtbo
 
 
 dtbotxt-$(CONFIG_ARCH_ROCKCHIP) += \

@@ -4,16 +4,9 @@
  *
  */
 
-&mipi_dcphy0 {
-    status = "okay";
-};
-
-&csi2_dphy0_hw {
+&csi2_dcphy0 {
 	status = "disabled";
-};
 
-&csi2_dphy0 {
-	status = "disabled";
 	ports {
 		#address-cells = <1>;
 		#size-cells = <0>;
@@ -22,36 +15,38 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 
-			mipi_in_ucam0: endpoint@0 {
+			mipi_in_cam0: endpoint@0 {
 				reg = <0>;
-				remote-endpoint = <&ov13850_out2>;
+				remote-endpoint = <&ov13850_out>;
 				data-lanes = <1 2>;
 			};
 
-			mipi_in_ucam1: endpoint@1 {
+			mipi_in_cam1: endpoint@1 {
 				reg = <1>;
-				remote-endpoint = <&ov13855_out2>;
+				remote-endpoint = <&ov13855_out>;
 				data-lanes = <1 2>;
 			};
 		};
+
 		port@1 {
-		        reg = <1>;
-		        #address-cells = <1>;
-		        #size-cells = <0>;
-		        csidphy0_out: endpoint@0 {
-		                reg = <0>;
-		                remote-endpoint = <&mipi2_csi2_input>;
-		        };
+			reg = <1>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			csidcphy0_out: endpoint@0 {
+				reg = <0>;
+				remote-endpoint = <&mipi0_csi2_input>;
+			};
 		};
 	};
 };
 
 &i2c3 {
 	status = "okay";
-	pinctrl-names = "default";
-	pinctrl-0 = <&i2c3m0_xfer>;
+        pinctrl-names = "default";
+        pinctrl-0 = <&i2c3m0_xfer>;
 
-	vm149c_p1: vm149c-p1@c {
+	vm149c_p2: vm149c-p2@c {
 		compatible = "silicon touch,vm149c";
 		status = "disabled";
 		reg = <0x0c>;
@@ -59,30 +54,32 @@
 		rockchip,camera-module-facing = "back";
 	};
 
-	ov13850_1: ov13850-1@10 {
+	ov13850_2: ov13850-2@10 {
 		compatible = "ovti,ov13850";
 		status = "disabled";
 		reg = <0x10>;
-		clocks = <&cru CLK_MIPI_CAMARAOUT_M3>;
+		clocks = <&cru CLK_MIPI_CAMARAOUT_M1>;
 		clock-names = "xvclk";
+                power-domains = <&power RK3588_PD_VI>;
 		pinctrl-names = "default";
-		pinctrl-0 = <&mipim1_camera3_clk>;
-		reset-gpios = <&gpio1 RK_PC4 GPIO_ACTIVE_HIGH>;
-		pwdn-gpios = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;
-		rockchip,camera-module-index = <0>;
+                pinctrl-0 = <&mipim1_camera1_clk>;
+		rockchip,grf = <&sys_grf>;
+		reset-gpios = <&gpio3 RK_PA7 GPIO_ACTIVE_HIGH>;
+		pwdn-gpios = <&gpio3 RK_PC5 GPIO_ACTIVE_HIGH>;
+		rockchip,camera-module-index = <1>;
 		rockchip,camera-module-facing = "back";
 		rockchip,camera-module-name = "CMK-CT0116";
 		rockchip,camera-module-lens-name = "default";
-		lens-focus = <&vm149c_p1>;
+		lens-focus = <&vm149c_p2>;
 		port {
-			ov13850_out2: endpoint {
-				remote-endpoint = <&mipi_in_ucam0>;
+			ov13850_out: endpoint {
+				remote-endpoint = <&mipi_in_cam0>;
 				data-lanes = <1 2>;
 			};
 		};
 	};
 
-	dw9714_p1: dw9714-p1@c {
+	dw9714_p2: dw9714-p2@c {
 		compatible = "dongwoon,dw9714";
 		status = "disabled";
 		reg = <0x0c>;
@@ -93,98 +90,93 @@
 		rockchip,camera-module-facing = "back";
 	};
 
-	ov13855_1: ov13855-1@36 {
+	ov13855_2: ov13855-2@36 {
 		compatible = "ovti,ov13855";
 		status = "disabled";
 		reg = <0x36>;
-		clocks = <&cru CLK_MIPI_CAMARAOUT_M3>;
+		clocks = <&cru CLK_MIPI_CAMARAOUT_M1>;
 		clock-names = "xvclk";
+		power-domains = <&power RK3588_PD_VI>;
 		pinctrl-names = "default";
-		pinctrl-0 = <&mipim1_camera3_clk>;
-		reset-gpios = <&gpio1 RK_PC4 GPIO_ACTIVE_HIGH>;
-		pwdn-gpios = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;
-		rockchip,camera-module-index = <0>;
+		pinctrl-0 = <&mipim1_camera1_clk>;
+		rockchip,grf = <&sys_grf>;
+		reset-gpios = <&gpio3 RK_PA7 GPIO_ACTIVE_HIGH>;
+		pwdn-gpios = <&gpio3 RK_PC5 GPIO_ACTIVE_HIGH>;
+		rockchip,camera-module-index = <1>;
 		rockchip,camera-module-facing = "back";
 		rockchip,camera-module-name = "CMK-OT2016-FV1";
 		rockchip,camera-module-lens-name = "default";
-		lens-focus = <&dw9714_p1>;
+		lens-focus = <&dw9714_p2>;
 		port {
-			ov13855_out2: endpoint {
-				remote-endpoint = <&mipi_in_ucam1>;
+			ov13855_out: endpoint {
+				remote-endpoint = <&mipi_in_cam1>;
 				data-lanes = <1 2>;
 			};
 		};
 	};
 };
 
-&mipi2_csi2 {
+&mipi0_csi2 {
 	status = "disabled";
+
 	ports {
 		#address-cells = <1>;
 		#size-cells = <0>;
+
 		port@0 {
 			reg = <0>;
 			#address-cells = <1>;
 			#size-cells = <0>;
-			mipi2_csi2_input: endpoint@1 {
+
+			mipi0_csi2_input: endpoint@1 {
 				reg = <1>;
-				remote-endpoint = <&csidphy0_out>;
+				remote-endpoint = <&csidcphy0_out>;
 			};
 		};
+
 		port@1 {
 			reg = <1>;
 			#address-cells = <1>;
 			#size-cells = <0>;
-			mipi2_csi2_output: endpoint@0 {
+
+			mipi0_csi2_output: endpoint@0 {
 				reg = <0>;
-				remote-endpoint = <&cif_mipi_in2>;
+				remote-endpoint = <&cif_mipi_in0>;
 			};
 		};
 	};
 };
 
-&rkcif {
-    status = "okay";
-};
-
-&rkcif_mmu {
-    status = "okay";
-};
-
-&rkcif_mipi_lvds2 {
+&rkcif_mipi_lvds {
 	status = "disabled";
+
 	port {
-		cif_mipi_in2: endpoint {
-			remote-endpoint = <&mipi2_csi2_output>;
+		cif_mipi_in0: endpoint {
+			remote-endpoint = <&mipi0_csi2_output>;
 		};
 	};
 };
 
-&rkcif_mipi_lvds2_sditf {
+&rkcif_mipi_lvds_sditf {
 	status = "disabled";
+
 	port {
-		mipi2_lvds_sditf: endpoint {
-			remote-endpoint = <&isp0_vir1>;
+		mipi_lvds_sditf: endpoint {
+			remote-endpoint = <&isp1_in1>;
 		};
 	};
 };
 
-&rkisp0 {
-    status = "okay";
-};
-
-&isp0_mmu {
-    status = "okay";
-};
-
-&rkisp0_vir1 {
+&rkisp1_vir0 {
 	status = "disabled";
+
 	port {
 		#address-cells = <1>;
 		#size-cells = <0>;
-		isp0_vir1: endpoint@0 {
+
+		isp1_in1: endpoint@0 {
 			reg = <0>;
-			remote-endpoint = <&mipi2_lvds_sditf>;
+			remote-endpoint = <&mipi_lvds_sditf>;
 		};
 	};
 };
