@@ -17,10 +17,18 @@
 };
 
 &{/} {
+
+	vcc3v3_lcd_n: vcc3v3-lcd0-n {
+		compatible = "regulator-fixed";
+		regulator-name = "vcc3v3_lcd0_n";
+		regulator-boot-on;
+		enable-active-high;
+		gpio = <&gpio1 RK_PB2 GPIO_ACTIVE_HIGH>;
+		vin-supply = <&vcc_3v3_s0>;
+	};
+
 		dsi0_backlight: dsi0-backlight {
-				status = "okay";
 				compatible = "pwm-backlight";
-				pwms = <&pwm14 0 25000 0>;
 				brightness-levels = <
 						0  20  20  21  21  22  22  23
 						23  24  24  25  25  26  26  27
@@ -54,12 +62,9 @@
 						232 233 234 235 236 237 238 239
 						240 241 242 243 244 245 246 247
 						248 249 250 251 252 253 254 255
-				>;
-				default-brightness-level = <200>;
-				enable-gpios = <&gpio3 RK_PC1 GPIO_ACTIVE_HIGH>;
-				pinctrl-names = "default";
-				pinctrl-0 = <&dsi0_backlight_en>;
-		};
+					>;
+					default-brightness-level = <200>;
+				};
 };
 
 &dsi0 {
@@ -74,6 +79,7 @@
 				reg = <0>;
 				backlight = <&dsi0_backlight>;
 
+				power-supply = <&vcc3v3_lcd_n>;
 				reset-gpios = <&gpio1 RK_PB0 GPIO_ACTIVE_LOW>;
 				pinctrl-names = "default";
 				pinctrl-0 = <&dsi0_lcd_rst_gpio>;
@@ -87,22 +93,36 @@
 				dsi,format = <MIPI_DSI_FMT_RGB888>;
 				dsi,lanes  = <4>;
 
+				panel-init-sequence = [
+						15 00 02 80 ac
+						15 00 02 81 b8
+						15 00 02 82 09
+						15 00 02 83 78
+						15 00 02 84 7f
+						15 00 02 85 bb
+						15 00 02 86 70
+				];
+
+				panel-exit-sequence = [
+
+				];
+
 				disp_timings0: display-timings {
 						native-mode = <&dsi0_timing0>;
 						dsi0_timing0: timing0 {
-								clock-frequency = <50000000>;
-								hactive = <1024>;
-								vactive = <600>;
-								hfront-porch = <150>;
-								hsync-len = <20>;
-								hback-porch = <150>;
-								vfront-porch = <8>;
-								vsync-len = <3>;
-								vback-porch = <24>;
-								hsync-active = <1>;
-								vsync-active = <1>;
-								de-active = <0>;
-								pixelclk-active = <1>;
+							clock-frequency = <65000000>; //DCLK
+							hactive = <1024>;             //hactive
+							vactive = <600>;              //vactive
+							hfront-porch = <160>;         //hfp
+							hback-porch = <160>;          //hbp
+							hsync-len = <10>;             //hsa
+							vfront-porch = <12>;          //vfp
+							vsync-len = <1>;              //vsa
+							vback-porch = <23>;           //vbp
+							hsync-active = <0>;           //hync 极性控制 置 1 反转极性
+							vsync-active = <0>;           //vsync 极性控制 置 1 反转极性
+							de-active = <1>;              //DEN 极性控制
+							pixelclk-active = <0>;        //dclk 极性控制
 						};
 				};
 
@@ -149,12 +169,29 @@
 		status = "okay";
 };
 
+&pwm14 {
+		status = "okay";
+		pinctrl-names = "active";
+		pinctrl-0 = <&pwm14m1_pins>;
+};
+
+&dsi0_backlight {
+		pwms = <&pwm14 0 25000 0>;
+		enable-gpios = <&gpio3 RK_PC1 GPIO_ACTIVE_HIGH>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&dsi0_backlight_en>;
+		status = "okay";
+};
+
 &i2c4 {
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <&i2c4m3_xfer>;
+	clock-frequency = <400000>;
+	#address-cells = <1>;
+	#size-cells = <0>;
 
-	gsl1680@40 {
+	gsl1680: gsl1680@40 {
 		compatible = "silead,gsl1680";
 		reg = <0x40>;
 		pinctrl-names = "default";
@@ -178,12 +215,12 @@
 				};
 		};
 
-		tp_irq {
-				tp_irq_gpio: tp-irq-gpio {
-					rockchip,pins = <0 RK_PD5 RK_FUNC_GPIO &pcfg_pull_up>;
-		};
-				tp_rst_gpio: tp-rst-gpio {
-					rockchip,pins = <3 RK_PC2 RK_FUNC_GPIO &pcfg_pull_up>;
-		};
-	};
+	// 	tp_irq {
+	// 			tp_irq_gpio: tp-irq-gpio {
+	// 				rockchip,pins = <0 RK_PD5 RK_FUNC_GPIO &pcfg_pull_up>;
+	// 	};
+	// 			tp_rst_gpio: tp-rst-gpio {
+	// 				rockchip,pins = <3 RK_PC2 RK_FUNC_GPIO &pcfg_pull_up>;
+	// 	};
+	// };
 };

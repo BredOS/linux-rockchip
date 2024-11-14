@@ -417,12 +417,6 @@
 	};
 };
 
-&i2c4 {
-	status = "okay";
-	pinctrl-names = "default";
-	pinctrl-0 = <&i2c4m3_xfer>;
-};
-
 &i2c6 {
 	status = "okay";
 	pinctrl-names = "default";
@@ -692,12 +686,6 @@
 			rockchip,pins = <0 RK_PC7 RK_FUNC_GPIO &pcfg_pull_up>;
 		};
 	};
-};
-
-&pwm14 {
-	status = "okay";
-	pinctrl-names = "active";
-	pinctrl-0 = <&pwm14m1_pins>;
 };
 
 &rga2 {
