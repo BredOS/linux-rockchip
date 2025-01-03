@@ -574,9 +574,9 @@
 };
 
 &hdmi0 {
+    status = "okay";
 	enable-gpios = <&gpio4 RK_PA0 GPIO_ACTIVE_HIGH>;
 	cec-enable = "true";
-	status = "okay";
 };
 
 &hdmi0_in_vp0 {
@@ -594,7 +594,8 @@
 
 &hdmi1 {
 	enable-gpios = <&gpio4 RK_PB2 GPIO_ACTIVE_HIGH>;
-    cec-enable = "true";
+	pinctrl-0 = <&hdmim0_tx1_cec &hdmim0_tx1_hpd &hdmim1_tx1_scl &hdmim1_tx1_sda>;
+	cec-enable = "true";
 	status = "okay";
 };
 
@@ -603,10 +604,6 @@
 };
 
 &hdptxphy_hdmi1 {
-	status = "okay";
-};
-
-&hdptxphy_hdmi0 {
 	status = "okay";
 };
 
