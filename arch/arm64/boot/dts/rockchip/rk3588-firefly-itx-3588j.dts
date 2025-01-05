@@ -142,7 +142,7 @@
 		#cooling-cells = <2>;
 		cooling-levels = <30 70 170 255>;
 		fan-supply = <&vcc12v_dcin>;
-		pwms = <&pwm15 0 50000 1>;
+		pwms = <&pwm15 0 50000 0>;
 	};
 
 	firefly_leds: leds {
