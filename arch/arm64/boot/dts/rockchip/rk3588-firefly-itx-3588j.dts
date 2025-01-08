@@ -890,6 +890,11 @@
 	status = "okay";
 };
 
+&pcie2x1l2 {
+	status = "disabled";
+};
+
+
 /* pcie3.0 x 4 slot */
 &pcie30phy {
 	status = "okay";
