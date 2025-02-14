@@ -13,6 +13,7 @@ dtbo-$(CONFIG_ARCH_ROCKCHIP) += \
 	orangepi-5-plus-ov13850.dtbo \
 	orangepi-5-plus-ov13855.dtbo \
 	orangepi-5-plus-sata2.dtbo \
+	orangepi-5-plus-hdmirx.dtbo \
 	orangepi-5-pro-lcd.dtbo \
 	orangepi-5-pro-sfc.dtbo \
 	orangepi-5-pro-cam1.dtbo \
