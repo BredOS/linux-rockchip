@@ -223,6 +223,7 @@ dtbo-$(CONFIG_ARCH_ROCKCHIP) += \
 	rk3588-w1-gpio3-b3.dtbo \
 	rk3588-w1-gpio4-b1.dtbo \
 	rk3588-hdmirx.dtbo \
+	rk3588-no-hdmirx.dts \
 	rk3568-can0-m0.dtbo \
 	rk3568-can1-m0.dtbo \
 	rk3568-can1-m1.dtbo \
@@ -304,7 +305,7 @@ dtbo-$(CONFIG_ARCH_ROCKCHIP) += \
 	rk3568-spi3-m1-cs0-waveshare35.dtbo \
 	rk3588-spi0-m2-cs0-waveshare35.dtbo \
 	rk3588-spi0-m1-cs0-waveshare35.dtbo \
-	indiedroid-nova-screen-dsi0.dtbo 
+	indiedroid-nova-screen-dsi0.dtbo
 
 dtbotxt-$(CONFIG_ARCH_ROCKCHIP) += \
 	README.rockchip-overlays
